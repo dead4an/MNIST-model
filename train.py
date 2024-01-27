@@ -16,11 +16,11 @@ DEVICE = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 IMAGE_SIZE = 28
 NUM_PIXELS = IMAGE_SIZE * IMAGE_SIZE
 NUM_EPOCHS = 15
-BATCH_SIZE = 1024
+BATCH_SIZE = 128
 INPUT_DIM = NUM_PIXELS
 HIDDEN_DIM = 784
 OUTPUT_DIM = 10
-LR = 4e-3
+LR = 2e-3
 CHECKPOINTS_PATH = './checkpoints'
 
 # Entry point

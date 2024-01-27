@@ -41,6 +41,26 @@ def train_epoch(dataloader: DataLoader, model: callable, optimizer: any,
     print(f'Epoch: {epoch} | Loss: {(total_loss / len(dataloader)):.6f}', 
           f'| Epoch Time: {(time() - start_time):.4f}',
           f'| Batch Time: {((time() - start_time) / len(dataloader)):.4f}')
+    
+def eval_model(dataloader: DataLoader, model: callable, 
+               criterion: callable) -> None:
+    total_loss = 0
+    start_time = time()
+
+    # Be carefull in case of using batch normalization
+    model.eval() 
+    with torch.no_grad():
+        for features, targets in dataloader:
+            features = features.to(DEVICE)
+            targets = targets.to(DEVICE)
+
+            preds = model(features)
+            loss = criterion(preds, targets)
+            total_loss += loss
+
+    print(f'Loss: {(total_loss / len(dataloader)):.6f}', 
+          f'| Epoch Time: {(time() - start_time):.4f}',
+          f'| Batch Time: {((time() - start_time) / len(dataloader)):.4f}')
 
 def save_checkpoint(model: callable, optimizer: callable, epoch: int, 
                     path: str) -> None:
