@@ -33,7 +33,7 @@ class LinearModel(nn.Module):
 class ConvModel(nn.Module):
     """Model based on convolutional and fully-connected linear layers."""
     def __init__(self, out_channels: int, hidden_dim: int, input_dim: int, 
-                 output_dim: int, dropout_p: float=0.3) -> None:
+                 output_dim: int) -> None:
         super(ConvModel, self).__init__()
         self.conv_input = nn.Conv1d(in_channels=1, out_channels=out_channels, kernel_size=3)
         self.fc_hidden = nn.Linear(in_features=4160, out_features=hidden_dim)
